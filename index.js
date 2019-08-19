@@ -5,7 +5,7 @@ const path = require("path");
 require('dotenv').config();
 
 // Connect to the MongoDB using either the Heroku URI or localhost
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 // SERVER CODE, SUCH AS MONGOOSE SCHEMAS AND GRAPHQL QUERIES
 
@@ -24,13 +24,16 @@ var Placeholder = mongoose.model('Placeholder', placeholderSchema, 'placeholder'
 
 // GRAPHQL TYPEDEF
 // these are the definitions for the possible GraphQL objects that can be returned
-const typeDefs = ``
+const typeDefs = `
+    type Placeholder {
+        id: ID!
+        placeholder: Int
+    }
+`
 
 // Resolvers for the GraphQL queries. This tells GraphQL how exactly to go about getting the desired data for each query
 const resolvers = {
-    Query: {
 
-    },
 }
 
 
