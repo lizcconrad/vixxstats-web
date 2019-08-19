@@ -9,6 +9,18 @@ mongoose.connect(process.env.MONGODB_URI);
 
 
 // SERVER CODE, SUCH AS MONGOOSE SCHEMAS AND GRAPHQL QUERIES
+// GRAPHQL TYPEDEF
+// these are the definitions for the possible GraphQL objects that can be returned
+const typeDefs = ``
+
+// Resolvers for the GraphQL queries. This tells GraphQL how exactly to go about getting the desired data for each query
+const resolvers = {
+    Query: {
+
+    },
+}
+
+
 
 
 // create the server with the typeDef and resolver information
