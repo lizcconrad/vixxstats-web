@@ -7,8 +7,21 @@ require('dotenv').config();
 // Connect to the MongoDB using either the Heroku URI or localhost
 mongoose.connect(process.env.MONGODB_URI);
 
-
 // SERVER CODE, SUCH AS MONGOOSE SCHEMAS AND GRAPHQL QUERIES
+
+//MONGOOSE SCHEMAS
+// each schema represents one collection in the database
+// the fields match the fields for the documents in each respective collection
+var placeholderSchema = new mongoose.Schema({
+    _id: mongoose.Schema.ObjectId,
+    placeholder: Number
+});
+
+// using the mongoose schemas, create mongoose models. These are what are used to make queries
+// the parameters are mongoose.model('Model_Name, schema, collection_name)
+// the collection name tells mongoose which collection in the database to associate this model with 
+var Placeholder = mongoose.model('Placeholder', placeholderSchema, 'placeholder');
+
 // GRAPHQL TYPEDEF
 // these are the definitions for the possible GraphQL objects that can be returned
 const typeDefs = ``
