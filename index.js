@@ -4,42 +4,100 @@ const express = require("express");
 const path = require("path");
 require('dotenv').config();
 
-// Connect to the MongoDB using either the Heroku URI or localhost
+
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
-// SERVER CODE, SUCH AS MONGOOSE SCHEMAS AND GRAPHQL QUERIES
+// 1. MONGOOSE MODELS STORED IN "models.js", SAVE MODEL HERE
+// 2. ADD NEW QUERIES IN THE TYPEDEF SCHEMA, INCLUDING THE TYPE
+// 3. ADD RESOLVER
 
-//MONGOOSE SCHEMAS
-// each schema represents one collection in the database
-// the fields match the fields for the documents in each respective collection
-var placeholderSchema = new mongoose.Schema({
-    _id: mongoose.Schema.ObjectId,
-    placeholder: Number
+// MONGOOSE MODELS
+const Channel = mongoose.model("Channel", {
+    channel_id: String,
+    channel_title: String,
+    uploads_id: String,
+    publish_date: String,
+    check_for_uploads: Boolean
 });
 
-// using the mongoose schemas, create mongoose models. These are what are used to make queries
-// the parameters are mongoose.model('Model_Name, schema, collection_name)
-// the collection name tells mongoose which collection in the database to associate this model with 
-var Placeholder = mongoose.model('Placeholder', placeholderSchema, 'placeholder');
+const Channel_stat = mongoose.model("Channel_stat", {
+    title: String,
+    channel_id: String,
+    videoCount: Number,
+    subscriberCount: Number,
+    viewCount: Number,
+    datetime_recorded: String
+});
 
-// GRAPHQL TYPEDEF
-// these are the definitions for the possible GraphQL objects that can be returned
+const Video = mongoose.model("Video", {
+    channel_id: String,
+    channel_title: String,
+    tags: [String],
+    title: String,
+    upload_date: String,
+    video_id: String
+});
+
+const Video_stat = mongoose.model("Video_stat", {
+    title: String,
+    video_id: String,
+    viewCount: Number,
+    likeCount: Number,
+    dislikeCount: Number,
+    commentCount: Number,
+    datetime_recorded: String
+});
+
 const typeDefs = `
-    type Placeholder {
-        id: ID!
-        placeholder: Int
+    type Query {
+        getVideoStats(video_id: String): [Video_stat]
     }
-`
 
-// Resolvers for the GraphQL queries. This tells GraphQL how exactly to go about getting the desired data for each query
+    type Channel { 
+        channel_id: String,
+        channel_title: String,
+        uploads_id: String,
+        publish_date: String,
+        check_for_uploads: Boolean
+    }
+
+    type Channel_stat {
+        title: String,
+        channel_id: String,
+        videoCount: Int,
+        subscriberCount: Int,
+        viewCount: Int,
+        datetime_recorded: String
+    }
+
+    type Video {
+        id: ID!
+        channel_id: String
+        channel_title: String
+        tags: [String]
+        title: String
+        upload_date: String
+        video_id: String
+    }
+
+    type Video_stat {
+        title: String,
+        video_id: String,
+        viewCount: Int,
+        likeCount: Int,
+        dislikeCount: Int,
+        commentCount: Int,
+        datetime_recorded: String
+    }
+`;
+
 const resolvers = {
+    Query: {
+        getVideoStats: (_, { video_id} ) => Video_stat.find({'video_id': video_id})
+    }
+};
 
-}
 
-
-
-
-// create the server with the typeDef and resolver information
 const server = new GraphQLServer({ typeDefs, resolvers });
 
 // express.static is responsible for static file requests to the client
@@ -56,7 +114,7 @@ const port = process.env.PORT || 4000
 
 const options = {
     port: port
-    }
+}
     
 server.start(options, ({ port }) =>
     console.log(
