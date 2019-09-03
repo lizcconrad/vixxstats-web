@@ -3,19 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-ssr": "^3.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-regular-svg-icons": "^5.10.2",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "apollo-boost": "^0.4.4",
+    "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
     "concurrently": "^4.1.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "moment": "^2.24.0",
     "nodemon": "^1.19.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "polished": "^3.4.1",
+    "react": "^16.8",
+    "react-apollo": "^3.0.1",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-chartjs-2": "^2.7.6",
+    "react-dom": "^16.8",
+    "react-is": "^16.8",
+    "react-scripts": "3.0.1",
+    "react-socks": "^2.0.2",
+    "react-vis": "^1.11.7",
+    "styled-components": "^5.0.0-beta.8-groupsizefix",
+    "styled-theming": "^2.2.0",
+    "victory": "^33.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "dev-server-exec": "cd ../ && nodemon --exec babel-node index_es6.js",
     "dev-server": "cd ../ && nodemon --watch index.js",
-    "dev": "concurrently \"yarn start\" \"yarn dev-server\""
+    "dev": "concurrently \"yarn start\" \"yarn dev-server\"",
+    "dev-exec": "concurrently \"yarn start\" \"yarn dev-server-exec\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,5 +55,16 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "react-create": "^1.0.2"
+  },
+  "peerDependencies": {
+    "eslint": "^6.3.0",
+    "jquery": "^3.4.1",
+    "popper": "^1.0.1",
+    "stylis": "^3.5.0",
+    "typescript": "^3.6.2"
+  }
 }
