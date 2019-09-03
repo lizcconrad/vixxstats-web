@@ -41,7 +41,7 @@ function HourlyStats (props) {
 
   return (
     <Page>
-      <HourlyChart title={videoStatsRaw[0]['title']} data={stats} />
+      {/* <HourlyChart title={videoStatsRaw[0]['title']} data={stats} /> */}
     </Page>
   );
 }
