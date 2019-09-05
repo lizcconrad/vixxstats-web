@@ -9,7 +9,7 @@ import { MyThemeProvider } from './ThemeContext';
 import * as serviceWorker from './serviceWorker';
 
 const client = new ApolloClient({
-    uri: "http://localhost:4000"
+    uri: process.env.REACT_APP_PRODUCTION_URI || "http://localhost:4000" 
 });
 
 ReactDOM.render(
