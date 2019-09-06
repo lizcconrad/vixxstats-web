@@ -8,9 +8,11 @@ import  { BreakpointProvider } from 'react-socks';
 import { MyThemeProvider } from './ThemeContext';
 import * as serviceWorker from './serviceWorker';
 
+// the uri where the server is running
 const client = new ApolloClient({
     uri: process.env.REACT_APP_PRODUCTION_URI || "http://localhost:4000" 
 });
+
 
 ReactDOM.render(
     <ApolloProvider client={client}>
