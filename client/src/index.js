@@ -5,7 +5,7 @@ import App from './App.js';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  { BreakpointProvider } from 'react-socks';
-import { MyThemeProvider } from './ThemeContext';
+import { ThemeContextProvider } from './ThemeContext';
 import * as serviceWorker from './serviceWorker';
 
 // the uri where the server is running
@@ -17,9 +17,9 @@ const client = new ApolloClient({
 ReactDOM.render(
     <ApolloProvider client={client}>
         <BreakpointProvider>
-            <MyThemeProvider>
+            <ThemeContextProvider>
                 <App />
-            </MyThemeProvider>
+            </ThemeContextProvider>
         </BreakpointProvider>
     </ApolloProvider>
 ,document.getElementById('root'));

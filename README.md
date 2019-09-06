@@ -4,6 +4,7 @@ web app to view VIXX video statistics
 - [React Frontend](#react-frontend)
     - [index.js](#indexjs)
     - [App](#app)
+    - [ThemeContextProvider](#themecontextprovider)
     - [common components](#common-components)
          - [Page](#page)
          - [CustomNavbar](#customnavbar)
@@ -31,6 +32,18 @@ The main entry point for the app. Renders the [`<App>`](#app) component along wi
 
 #### `App`
 The app :^) wrapped in a `<BrowserRouter>` component, this is which specifies which component to render based on the URL
+
+#### `ThemeContextProvider`
+Found in `ThemeContext.js`, this is the custom component that wraps the app in order to provide a React context that keeps track the theme currently in use in order to render the pages with the proper theme
+
+### Common components
+These components are used across many or all pages of the website
+
+#### `Page`
+This is a wrapper for every page on the website. It sets a background div to be as tall as the viewport (for styling reasons) and renders the [`CustomNavbar`](#customnavbar).
+
+#### `CustomNavbar`
+The navbar for the website. Starts with the  [react-bootstrap](https://react-bootstrap.github.io/) navbar as a base. Includes links to every other page on the site. This component makes use of [styled-components](https://www.styled-components.com/) to alter the original bootstrap styling.
 
 
 ## Server

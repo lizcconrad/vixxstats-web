@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTheme } from '../ThemeContext';
+import theme from 'styled-theming';
 import styled, { withTheme } from 'styled-components';
 import { Breakpoint } from 'react-socks';
-import { navbarBackgroundColor, navbarBackgroundImage, navbarAccentColor, navbarAccentColorRGBA,
-  backgroundColor, textColor, primaryColor, accentColor } from '../theme';
+import { backgroundColor, textColor, primaryColor, accentColor } from '../theme';
 import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faStar } from '@fortawesome/free-regular-svg-icons'
@@ -13,8 +13,34 @@ import { faFlask, faBars } from '@fortawesome/free-solid-svg-icons'
 function CustomNavbar (props) {
 
   // get toggle context with useTheme
-  const theme = useTheme();
+  const themeContext = useTheme();
 
+  // Navbar theming
+  const navbarBackgroundColor = theme('mode', {
+    light: '#002147',
+    dark: '#222',
+    scentist: '#CD3E80'
+  });
+
+  const navbarBackgroundImage = theme('mode', {
+    light: 'none',
+    dark: 'none',
+    scentist: 'linear-gradient(to bottom right, #CD3E80, #D16257);'
+  })
+
+  const navbarAccentColor = theme('mode', {
+    light: '#D6AD69',
+    dark: '#fff',
+    scentist: '#fff'
+  });
+  const navbarAccentColorRGBA = theme('mode', {
+    light: 'rgb(214,173,105,0.5)',
+    dark: 'rgb(255,255,255,0.5)',
+    scentist: 'rgb(255,255,255,0.5)'
+  });
+
+
+  // StyledNavbar: changes the coloring and hover behavior of the links in the navbar
   // #region
   const StyledNavbar = styled(Navbar)`
     background-color: ${navbarBackgroundColor};
@@ -44,6 +70,7 @@ function CustomNavbar (props) {
   `;
   // #endregion
 
+  // StyledDropdown: changes the color and hover behavior of dropdowns in the navbar
   // #region
   const StyledDropdown = styled.div`
     .dropdown-menu {
@@ -63,6 +90,7 @@ function CustomNavbar (props) {
   `;
   // #endregion
 
+  // StyledButton: changes the color and hover behavior of the dropdown buttons in the navbar
   // #region
   const StyledButton = styled.div`
     .btn-outline-primary {
@@ -93,6 +121,8 @@ function CustomNavbar (props) {
   `;
   // #endregion
 
+  // StyledToggleWrapper: changes the icon of the navbar toggle icon that shows on smaller screens
+  // #region
   const StyledToggleWrapper = styled.div`
 
     .navbar-toggler {
@@ -111,20 +141,22 @@ function CustomNavbar (props) {
       color: ${navbarAccentColor};
     }
   `;
+  // #endregion
 
-  let buttonTitle;
+  // the title of the button/dropdown for the theme switcher
+  let themeTitle;
   if (props.theme.mode === 'light') {
-    buttonTitle = 
+    themeTitle = 
       <span>
         (Star)Light <FontAwesomeIcon icon={faStar}/>
       </span>
   } else if (props.theme.mode === 'dark') {
-    buttonTitle = 
+    themeTitle = 
       <span>
         Dark <FontAwesomeIcon icon={faMoon}/>
       </span>
   } else {
-    buttonTitle = 
+    themeTitle = 
       <span>
         Scentist <FontAwesomeIcon icon={faFlask}/>
       </span>
@@ -135,15 +167,19 @@ function CustomNavbar (props) {
       {/* expand "lg" collapses the navbar when the window gets smaller than the 'lg' breakpoint */}
       <StyledNavbar expand="lg">
         <Navbar.Brand className="hvr-grow" href="/">vixxstats</Navbar.Brand>
+
+        {/* the toggle icon for smaller screens */}
         <StyledToggleWrapper>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <FontAwesomeIcon icon={faBars}/>
           </Navbar.Toggle>
-          
         </StyledToggleWrapper>
+
+        {/* all the content to be collapsed on smaller screens */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#link">Interactive Stats</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+
             <StyledDropdown>
               <NavDropdown title="Members" id="members-nav-dropdown">
                 <NavDropdown.Item href="/members/N">N</NavDropdown.Item>
@@ -154,31 +190,35 @@ function CustomNavbar (props) {
                 <NavDropdown.Item href="/members/HYUK">HYUK</NavDropdown.Item>
               </NavDropdown>
             </StyledDropdown>
+
+            {/* on smaller screens, display the theme switcher as a dropdown rather than a button */}
             <Breakpoint large down>
-              <NavDropdown title={buttonTitle} id="theme-nav-dropdown">
-                <Dropdown.Item as="button" onClick={() => theme.set('light')}>
+              <NavDropdown title={themeTitle} id="theme-nav-dropdown">
+                <Dropdown.Item as="button" onClick={() => themeContext.set('light')}>
                   (Star)Light <FontAwesomeIcon icon={faStar}/>
                 </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => theme.set('dark')}>
+                <Dropdown.Item as="button" onClick={() => themeContext.set('dark')}>
                   Dark <FontAwesomeIcon icon={faMoon}/>
                 </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => theme.set('scentist')}>
+                <Dropdown.Item as="button" onClick={() => themeContext.set('scentist')}>
                   Scentist <FontAwesomeIcon icon={faFlask}/>
                 </Dropdown.Item>
               </NavDropdown>
             </Breakpoint>
           </Nav>
+
+          {/* on larger screens, display the theme switcher as a button */}
           <Breakpoint large up>
             <StyledButton>
               <StyledDropdown>
-              <DropdownButton variant="outline-primary" alignRight title={buttonTitle} id="dropdown-theme">
-                <Dropdown.Item as="button" onClick={() => theme.set('light')}>
+              <DropdownButton variant="outline-primary" alignRight title={themeTitle} id="dropdown-theme">
+                <Dropdown.Item as="button" onClick={() => themeContext.set('light')}>
                   (Star)Light <FontAwesomeIcon icon={faStar}/>
                 </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => theme.set('dark')}>
+                <Dropdown.Item as="button" onClick={() => themeContext.set('dark')}>
                   Dark <FontAwesomeIcon icon={faMoon}/>
                 </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => theme.set('scentist')}>
+                <Dropdown.Item as="button" onClick={() => themeContext.set('scentist')}>
                   Scentist <FontAwesomeIcon icon={faFlask}/>
                 </Dropdown.Item>
               </DropdownButton>
@@ -193,4 +233,3 @@ function CustomNavbar (props) {
 }
 
 export default withTheme(CustomNavbar);
-

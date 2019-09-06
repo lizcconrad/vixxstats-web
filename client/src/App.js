@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { withTheme } from 'styled-components';
+import { BrowserRouter, Route } from "react-router-dom";
 import HourlyStats from './datadisplay/HourlyStats';
 import MemberPage from './MemberPage';
 
@@ -13,4 +14,4 @@ function App (props) {
   );
 }
 
-export default App;
+export default withTheme(App);
