@@ -6,8 +6,8 @@ import HourlyChart from './HourlyChart.js';
 import moment from 'moment';
 
 const GET_VIDEO_STATS = gql`
-  query($video_id: String) {
-    getVideoStats(video_id: $video_id) {
+  query($video_id: String, $tag: String) {
+    getVideoStats(video_id: $video_id, tag: $tag) {
       title
       viewCount
       likeCount
@@ -23,7 +23,7 @@ const GET_VIDEO_STATS = gql`
 
 function HourlyStats (props) {
 
-  const { data, loading, error } = useQuery(GET_VIDEO_STATS, {variables: { video_id: '5JPGujmFbis' }});
+  const { data, loading, error } = useQuery(GET_VIDEO_STATS, {variables: { video_id: '5JPGujmFbis', tag: 'hourly' }});
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
