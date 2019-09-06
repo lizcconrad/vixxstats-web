@@ -7,7 +7,7 @@ import { navbarBackgroundColor, navbarBackgroundImage, navbarAccentColor, navbar
 import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faStar } from '@fortawesome/free-regular-svg-icons'
-import { faFlask } from '@fortawesome/free-solid-svg-icons'
+import { faFlask, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 function CustomNavbar (props) {
@@ -93,6 +93,25 @@ function CustomNavbar (props) {
   `;
   // #endregion
 
+  const StyledToggleWrapper = styled.div`
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler:focus {
+      outline-color: ${navbarAccentColor};
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
+    }
+
+    svg {
+      color: ${navbarAccentColor};
+    }
+  `;
+
   let buttonTitle;
   if (props.theme.mode === 'light') {
     buttonTitle = 
@@ -116,7 +135,12 @@ function CustomNavbar (props) {
       {/* expand "lg" collapses the navbar when the window gets smaller than the 'lg' breakpoint */}
       <StyledNavbar expand="lg">
         <Navbar.Brand className="hvr-grow" href="#home">vixxstats</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <StyledToggleWrapper>
+          <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <FontAwesomeIcon icon={faBars}/>
+          </Navbar.Toggle>
+          
+        </StyledToggleWrapper>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {/* <Nav.Link href="#home">Home</Nav.Link>
@@ -146,21 +170,21 @@ function CustomNavbar (props) {
             </Breakpoint>
           </Nav>
           <Breakpoint large up>
-          <StyledButton>
-            <StyledDropdown>
-            <DropdownButton variant="outline-primary" alignRight title={buttonTitle} id="dropdown-theme">
-              <Dropdown.Item as="button" onClick={() => theme.set('light')}>
-                (Star)Light <FontAwesomeIcon icon={faStar}/>
-              </Dropdown.Item>
-              <Dropdown.Item as="button" onClick={() => theme.set('dark')}>
-                Dark <FontAwesomeIcon icon={faMoon}/>
-              </Dropdown.Item>
-              <Dropdown.Item as="button" onClick={() => theme.set('scentist')}>
-                Scentist <FontAwesomeIcon icon={faFlask}/>
-              </Dropdown.Item>
-            </DropdownButton>
-            </StyledDropdown>
-            </StyledButton>
+            <StyledButton>
+              <StyledDropdown>
+              <DropdownButton variant="outline-primary" alignRight title={buttonTitle} id="dropdown-theme">
+                <Dropdown.Item as="button" onClick={() => theme.set('light')}>
+                  (Star)Light <FontAwesomeIcon icon={faStar}/>
+                </Dropdown.Item>
+                <Dropdown.Item as="button" onClick={() => theme.set('dark')}>
+                  Dark <FontAwesomeIcon icon={faMoon}/>
+                </Dropdown.Item>
+                <Dropdown.Item as="button" onClick={() => theme.set('scentist')}>
+                  Scentist <FontAwesomeIcon icon={faFlask}/>
+                </Dropdown.Item>
+              </DropdownButton>
+              </StyledDropdown>
+              </StyledButton>
           </Breakpoint>
         </Navbar.Collapse>
       </StyledNavbar>
