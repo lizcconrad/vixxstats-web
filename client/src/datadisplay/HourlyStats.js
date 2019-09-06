@@ -23,20 +23,20 @@ const GET_VIDEO_STATS = gql`
 
 function HourlyStats (props) {
 
-  // const { data, loading, error } = useQuery(GET_VIDEO_STATS, {variables: { video_id: '5JPGujmFbis', tag: 'hourly' }});
+  const { data, loading, error } = useQuery(GET_VIDEO_STATS, {variables: { video_id: '5JPGujmFbis', tag: 'hourly' }});
 
-  // if (loading) return 'Loading...';
-  // if (error) return `Error! ${error.message}`;
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
-  // let videoStatsRaw = data['getVideoStats'];
+  let videoStatsRaw = data['getVideoStats'];
 
-  // let i;
-  // let stats = [];
-  // for(i=0; i < data['getVideoStats'].length; i++) {
-  //   stats.push({
-  //     datetime: moment(videoStatsRaw[i]['datetime_recorded']).toDate(), 
-  //     viewCount: videoStatsRaw[i]['viewCount']});
-  // }
+  let i;
+  let stats = [];
+  for(i=0; i < data['getVideoStats'].length; i++) {
+    stats.push({
+      datetime: moment(videoStatsRaw[i]['datetime_recorded']).toDate(), 
+      viewCount: videoStatsRaw[i]['viewCount']});
+  }
 
 
   return (
