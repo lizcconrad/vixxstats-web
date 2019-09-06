@@ -2,6 +2,12 @@
 web app to view VIXX video statistics
 
 - [React Frontend](#react-frontend)
+    - [index.js](#indexjs)
+    - [App](#app)
+    - [common components](#common-components)
+         - [Page](#page)
+         - [CustomNavbar](#customnavbar)
+    -
 - [Server](#server)
     - [Mongoose Models](#mongoose-models)
         - [Channel](#channel)
@@ -11,6 +17,21 @@ web app to view VIXX video statistics
     - [TypeDefs](#typedefs)
     - [Resolvers](#resolvers)
     - [How to add a GraphQL query](#how-to-add-a-graphql-query)
+
+
+
+## React Frontend
+Each component used in the React App is described below
+
+#### `index.js`
+The main entry point for the app. Renders the [`<App>`](#app) component along with the following wrappers:
+- `ApolloProvider`:  allows for sending GraphQL queries to the server
+- `BreakPointProvider`: provides the ability to use the `<BreakPoint>` component from [react-socks](https://github.com/flexdinesh/react-socks), which lets you specify that elements only be rendered at certain viewport size breakpoints for easy desktop/mobile accomodation
+- `MyThemeProvider`: a custom component, provides the app with a theme context so child components can all access information about the current theme using props
+
+#### `App`
+The app :^) wrapped in a `<BrowserRouter>` component, this is which specifies which component to render based on the URL
+
 
 ## Server
 
@@ -110,8 +131,3 @@ const { data, loading, error } = useQuery(QUERY_NAME, {variables: { query_param:
 
   let dataRaw = data['typeDefQueryName'];
 ```
-
-
-
-
-## React Frontend

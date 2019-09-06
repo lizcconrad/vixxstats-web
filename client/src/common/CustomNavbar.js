@@ -134,7 +134,7 @@ function CustomNavbar (props) {
     <div>
       {/* expand "lg" collapses the navbar when the window gets smaller than the 'lg' breakpoint */}
       <StyledNavbar expand="lg">
-        <Navbar.Brand className="hvr-grow" href="#home">vixxstats</Navbar.Brand>
+        <Navbar.Brand className="hvr-grow" href="/">vixxstats</Navbar.Brand>
         <StyledToggleWrapper>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <FontAwesomeIcon icon={faBars}/>
@@ -143,18 +143,17 @@ function CustomNavbar (props) {
         </StyledToggleWrapper>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Interactive Stats</Nav.Link>
             <StyledDropdown>
               <NavDropdown title="Members" id="members-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">N</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">LEO</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">KEN</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">RAVI</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.5">HONGBIN</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.6">HYUK</NavDropdown.Item>
+                <NavDropdown.Item href="/members/N">N</NavDropdown.Item>
+                <NavDropdown.Item href="/members/LEO">LEO</NavDropdown.Item>
+                <NavDropdown.Item href="/members/KEN">KEN</NavDropdown.Item>
+                <NavDropdown.Item href="/members/RAVI">RAVI</NavDropdown.Item>
+                <NavDropdown.Item href="/members/HONGBIN">HONGBIN</NavDropdown.Item>
+                <NavDropdown.Item href="/members/HYUK">HYUK</NavDropdown.Item>
               </NavDropdown>
-            </StyledDropdown> */}
+            </StyledDropdown>
             <Breakpoint large down>
               <NavDropdown title={buttonTitle} id="theme-nav-dropdown">
                 <Dropdown.Item as="button" onClick={() => theme.set('light')}>

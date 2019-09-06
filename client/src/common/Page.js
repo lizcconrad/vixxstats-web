@@ -8,6 +8,7 @@ function Page (props) {
     padding: 1%;
   `;
 
+
   return (
     <div>
       <CustomNavbar />

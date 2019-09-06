@@ -1,11 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import HourlyStats from './datadisplay/HourlyStats';
-import Page from './common/Page'
+import MemberPage from './MemberPage';
 
 
 function App (props) {
   return (
-    <HourlyStats />
+    <BrowserRouter>
+      <Route path="/" exact component={HourlyStats} />
+      <Route path="/members/:member_name?" component={MemberPage} />
+    </BrowserRouter>
   );
 }
 
