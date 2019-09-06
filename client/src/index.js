@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import App from './App.js';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { IntlProvider } from 'react-intl';
 import  { BreakpointProvider } from 'react-socks';
 import { ThemeContextProvider } from './ThemeContext';
 import * as serviceWorker from './serviceWorker';
@@ -18,7 +19,9 @@ ReactDOM.render(
     <ApolloProvider client={client}>
         <BreakpointProvider>
             <ThemeContextProvider>
-                <App />
+                <IntlProvider>
+                    <App />
+                </IntlProvider>
             </ThemeContextProvider>
         </BreakpointProvider>
     </ApolloProvider>

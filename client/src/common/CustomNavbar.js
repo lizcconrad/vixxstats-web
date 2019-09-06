@@ -8,6 +8,7 @@ import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootst
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faStar } from '@fortawesome/free-regular-svg-icons'
 import { faFlask, faBars } from '@fortawesome/free-solid-svg-icons'
+import { FormattedMessage } from 'react-intl';
 
 
 function CustomNavbar (props) {
@@ -178,7 +179,9 @@ function CustomNavbar (props) {
         {/* all the content to be collapsed on smaller screens */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/">
+              <FormattedMessage id="CustomNavbar.homeLink" defaultMessage="HOME"/>
+            </Nav.Link>
 
             <StyledDropdown>
               <NavDropdown title="Members" id="members-nav-dropdown">
