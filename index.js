@@ -50,7 +50,7 @@ const Video_stat = mongoose.model("Video_stat", {
 
 const typeDefs = `
     type Query {
-        getVideoStats(video_id: String): [Video_stat]
+        getVideoStats(video_id: String, tag: String): [Video_stat]
     }
 
     type Channel { 
@@ -93,7 +93,7 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        getVideoStats: (_, { video_id} ) => Video_stat.find({'video_id': video_id})
+        getVideoStats: (_, { video_id, tag } ) => Video_stat.find({'video_id': video_id, 'tags': tag})
     }
 };
 
