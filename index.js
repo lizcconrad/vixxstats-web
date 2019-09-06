@@ -7,11 +7,12 @@ require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
-// 1. MONGOOSE MODELS STORED IN "models.js", SAVE MODEL HERE
+// 1. MONGOOSE MODELS STORED IN "models.js"
 // 2. ADD NEW QUERIES IN THE TYPEDEF SCHEMA, INCLUDING THE TYPE
 // 3. ADD RESOLVER
 
 // MONGOOSE MODELS
+// Model for the collection that stores information about a YouTube channel
 const Channel = mongoose.model("Channel", {
     channel_id: String,
     channel_title: String,
@@ -20,6 +21,7 @@ const Channel = mongoose.model("Channel", {
     check_for_uploads: Boolean
 });
 
+// Model for the collection that stores channel statistic entries
 const Channel_stat = mongoose.model("Channel_stat", {
     title: String,
     channel_id: String,
@@ -29,6 +31,7 @@ const Channel_stat = mongoose.model("Channel_stat", {
     datetime_recorded: String
 });
 
+// Model for the collection that stores information about a YouTube video
 const Video = mongoose.model("Video", {
     channel_id: String,
     channel_title: String,
@@ -38,6 +41,7 @@ const Video = mongoose.model("Video", {
     video_id: String
 });
 
+// Model for the collection that stores video statistics entries
 const Video_stat = mongoose.model("Video_stat", {
     title: String,
     video_id: String,
@@ -48,6 +52,9 @@ const Video_stat = mongoose.model("Video_stat", {
     datetime_recorded: String
 });
 
+// Type definitions for GraphQL schema
+// Queries:
+// getVideoStats(video_id, tag): Given a video_id and a tag, get the appropriate video_stats entries out of the video_stats collection
 const typeDefs = `
     type Query {
         getVideoStats(video_id: String, tag: String): [Video_stat]
