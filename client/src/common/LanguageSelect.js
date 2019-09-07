@@ -17,7 +17,8 @@ function LanguageSelect (props) {
             border: none;
             background: none;
             height: 2.5rem;
-            width: 3.5rem;
+            width: 4rem;
+            margin-right: 0.25rem;
 
             &:focus {
                 outline: none;
