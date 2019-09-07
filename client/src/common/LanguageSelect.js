@@ -81,7 +81,9 @@ function LanguageSelect (props) {
     <div>
         {/* <Breakpoint large up> */}
             <StyledDropdown className="dropdown">
+                <a>
                 <StyledDiv style={langButtonStyle} aria-haspopup="true" aria-expanded="false" id="dropdown-language" data-toggle="dropdown" />
+                </a>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
                     <div id="en_wrapper" className="dropdown-item" onClick={onLanguageSelect}>
                         {translate('i18n_dropdown_en')} <StyledMenuDiv id="en_flag_icon" style={{'backgroundImage': `url(${en_icon})`}}></StyledMenuDiv>  
