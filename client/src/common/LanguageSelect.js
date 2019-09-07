@@ -81,7 +81,7 @@ function LanguageSelect (props) {
     <div>
         {/* <Breakpoint large up> */}
             <StyledDropdown className="dropdown">
-                <a aria-haspopup="true" aria-expanded="false" id="dropdown-language" data-toggle="dropdown" >
+                <a aria-haspopup="true" aria-expanded="false" id="dropdown-language" data-toggle="dropdown" role="button">
                     <StyledDiv style={langButtonStyle} />
                 </a>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
