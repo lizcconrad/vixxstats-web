@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import App from './App.js';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { IntlProvider } from 'react-intl';
 import  { BreakpointProvider } from 'react-socks';
 import { ThemeContextProvider } from './ThemeContext';
+import { I18nContextProvider } from './I18nProvider'
 import * as serviceWorker from './serviceWorker';
 
 // the uri where the server is running
@@ -18,11 +18,11 @@ const client = new ApolloClient({
 ReactDOM.render(
     <ApolloProvider client={client}>
         <BreakpointProvider>
-            <ThemeContextProvider>
-                <IntlProvider>
+            <I18nContextProvider>
+                <ThemeContextProvider>
                     <App />
-                </IntlProvider>
-            </ThemeContextProvider>
+                </ThemeContextProvider>
+            </I18nContextProvider>
         </BreakpointProvider>
     </ApolloProvider>
 ,document.getElementById('root'));

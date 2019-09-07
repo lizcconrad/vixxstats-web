@@ -88,11 +88,6 @@ function HourlyChart (props) {
                     />
                 </VictoryChart>
             </StyledDivLarge>
-            <StyledDivRight>
-                <StyledTitle>More soon!</StyledTitle>
-                <StyledTitle>-</StyledTitle>
-                <StyledTitle>곧 온다!</StyledTitle>
-            </StyledDivRight>
         </Breakpoint>
         <Breakpoint large down>
         <StyledDivSmall>
@@ -127,11 +122,6 @@ function HourlyChart (props) {
                     style= {{ data: {stroke: `${textColor({'theme': props.theme})}`, strokeWidth: 1 }}}
                 />
             </VictoryChart>
-            </StyledDivSmall>
-            <StyledDivSmall>
-                <StyledTitle>More soon!</StyledTitle>
-                <StyledTitle>-</StyledTitle>
-                <StyledTitle>곧 온다!</StyledTitle>
             </StyledDivSmall>
         </Breakpoint>
         </div>

@@ -1,0 +1,19 @@
+{
+    "home_link": "홈페이지",
+    "light_theme": "(별)빛",
+    "dark_theme": "어둠",
+    "scentist_theme": "향",
+    "members_dropdown": "멤버",
+    "members_dropdown_n": "엔",
+    "members_dropdown_leo": "레오",
+    "members_dropdown_ken": "켄",
+    "members_dropdown_ravi": "라비",
+    "members_dropdown_hongbin": "홍빈",
+    "members_dropdown_hyuk": "혁",
+
+    "i18n_dropdown_en": "영어",
+    "i18n_dropdown_es": "스페인어",
+    "i18n_dropdown_kr": "한국어",
+
+    "member_page_soon": "멤버 페이지가 곧 온다!"
+}

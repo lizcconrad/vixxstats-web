@@ -1,0 +1,19 @@
+{
+    "home_link": "HOME",
+    "light_theme": "(Star)light",
+    "dark_theme": "Dark",
+    "scentist_theme": "Scentist",
+    "members_dropdown": "MEMBERS",
+    "members_dropdown_n": "N",
+    "members_dropdown_leo": "LEO",
+    "members_dropdown_ken": "KEN",
+    "members_dropdown_ravi": "RAVI",
+    "members_dropdown_hongbin": "HONGBIN",
+    "members_dropdown_hyuk": "HYUK",
+
+    "i18n_dropdown_en": "English",
+    "i18n_dropdown_es": "Spanish",
+    "i18n_dropdown_kr": "Korean",
+
+    "member_page_soon": "Member Pages coming soon!"
+}

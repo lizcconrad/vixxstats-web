@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTheme } from '../ThemeContext';
 import theme from 'styled-theming';
 import styled, { withTheme } from 'styled-components';
@@ -8,10 +8,14 @@ import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootst
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faStar } from '@fortawesome/free-regular-svg-icons'
 import { faFlask, faBars } from '@fortawesome/free-solid-svg-icons'
-import { FormattedMessage } from 'react-intl';
+import { I18nContext } from '../I18nProvider';
+import LanguageSelect from './LanguageSelect'
 
 
 function CustomNavbar (props) {
+
+  // get translation context
+  const { translate } = useContext(I18nContext);
 
   // get toggle context with useTheme
   const themeContext = useTheme();
@@ -144,22 +148,29 @@ function CustomNavbar (props) {
   `;
   // #endregion
 
+  // StyledBreakpoint: hug the language breakpoint to the right on mobile
+  // #region
+  const StyledBreakpoint = styled(Breakpoint)`
+    margin-left: auto;
+  `;
+  // #endregion
+
   // the title of the button/dropdown for the theme switcher
   let themeTitle;
   if (props.theme.mode === 'light') {
     themeTitle = 
       <span>
-        (Star)Light <FontAwesomeIcon icon={faStar}/>
+        {translate('light_theme')} <FontAwesomeIcon icon={faStar}/>
       </span>
   } else if (props.theme.mode === 'dark') {
     themeTitle = 
       <span>
-        Dark <FontAwesomeIcon icon={faMoon}/>
+        {translate('dark_theme')} <FontAwesomeIcon icon={faMoon}/>
       </span>
   } else {
     themeTitle = 
       <span>
-        Scentist <FontAwesomeIcon icon={faFlask}/>
+        {translate('scentist_theme')} <FontAwesomeIcon icon={faFlask}/>
       </span>
   }
 
@@ -168,6 +179,10 @@ function CustomNavbar (props) {
       {/* expand "lg" collapses the navbar when the window gets smaller than the 'lg' breakpoint */}
       <StyledNavbar expand="lg">
         <Navbar.Brand className="hvr-grow" href="/">vixxstats</Navbar.Brand>
+
+        <StyledBreakpoint large down>
+          <LanguageSelect /> 
+        </StyledBreakpoint>
 
         {/* the toggle icon for smaller screens */}
         <StyledToggleWrapper>
@@ -180,17 +195,17 @@ function CustomNavbar (props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/">
-              <FormattedMessage id="CustomNavbar.homeLink" defaultMessage="HOME"/>
+              {translate('home_link')}
             </Nav.Link>
 
             <StyledDropdown>
-              <NavDropdown title="Members" id="members-nav-dropdown">
-                <NavDropdown.Item href="/members/N">N</NavDropdown.Item>
-                <NavDropdown.Item href="/members/LEO">LEO</NavDropdown.Item>
-                <NavDropdown.Item href="/members/KEN">KEN</NavDropdown.Item>
-                <NavDropdown.Item href="/members/RAVI">RAVI</NavDropdown.Item>
-                <NavDropdown.Item href="/members/HONGBIN">HONGBIN</NavDropdown.Item>
-                <NavDropdown.Item href="/members/HYUK">HYUK</NavDropdown.Item>
+              <NavDropdown title={translate('members_dropdown')} id="members-nav-dropdown">
+                <NavDropdown.Item href="/members/N">{translate('members_dropdown_n')}</NavDropdown.Item>
+                <NavDropdown.Item href="/members/LEO">{translate('members_dropdown_leo')}</NavDropdown.Item>
+                <NavDropdown.Item href="/members/KEN">{translate('members_dropdown_ken')}</NavDropdown.Item>
+                <NavDropdown.Item href="/members/RAVI">{translate('members_dropdown_ravi')}</NavDropdown.Item>
+                <NavDropdown.Item href="/members/HONGBIN">{translate('members_dropdown_hongbin')}</NavDropdown.Item>
+                <NavDropdown.Item href="/members/HYUK">{translate('members_dropdown_hyuk')}</NavDropdown.Item>
               </NavDropdown>
             </StyledDropdown>
 
@@ -198,37 +213,42 @@ function CustomNavbar (props) {
             <Breakpoint large down>
               <NavDropdown title={themeTitle} id="theme-nav-dropdown">
                 <Dropdown.Item as="button" onClick={() => themeContext.set('light')}>
-                  (Star)Light <FontAwesomeIcon icon={faStar}/>
+                  {translate('light_theme')} <FontAwesomeIcon icon={faStar}/>
                 </Dropdown.Item>
                 <Dropdown.Item as="button" onClick={() => themeContext.set('dark')}>
-                  Dark <FontAwesomeIcon icon={faMoon}/>
+                  {translate('dark_theme')} <FontAwesomeIcon icon={faMoon}/>
                 </Dropdown.Item>
                 <Dropdown.Item as="button" onClick={() => themeContext.set('scentist')}>
-                  Scentist <FontAwesomeIcon icon={faFlask}/>
+                  {translate('scentist_theme')} <FontAwesomeIcon icon={faFlask}/>
                 </Dropdown.Item>
               </NavDropdown>
             </Breakpoint>
           </Nav>
 
+          <Breakpoint large up>
+            <LanguageSelect /> 
+          </Breakpoint>
+
           {/* on larger screens, display the theme switcher as a button */}
           <Breakpoint large up>
             <StyledButton>
               <StyledDropdown>
-              <DropdownButton variant="outline-primary" alignRight title={themeTitle} id="dropdown-theme">
-                <Dropdown.Item as="button" onClick={() => themeContext.set('light')}>
-                  (Star)Light <FontAwesomeIcon icon={faStar}/>
-                </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => themeContext.set('dark')}>
-                  Dark <FontAwesomeIcon icon={faMoon}/>
-                </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => themeContext.set('scentist')}>
-                  Scentist <FontAwesomeIcon icon={faFlask}/>
-                </Dropdown.Item>
-              </DropdownButton>
+                <DropdownButton variant="outline-primary" alignRight title={themeTitle} id="dropdown-theme">
+                  <Dropdown.Item as="button" onClick={() => themeContext.set('light')}>
+                    {translate('light_theme')} <FontAwesomeIcon icon={faStar}/>
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button" onClick={() => themeContext.set('dark')}>
+                    {translate('dark_theme')} <FontAwesomeIcon icon={faMoon}/>
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button" onClick={() => themeContext.set('scentist')}>
+                    {translate('scentist_theme')} <FontAwesomeIcon icon={faFlask}/>
+                  </Dropdown.Item>
+                </DropdownButton>
               </StyledDropdown>
-              </StyledButton>
+            </StyledButton>
           </Breakpoint>
         </Navbar.Collapse>
+
       </StyledNavbar>
     </div>
   )
