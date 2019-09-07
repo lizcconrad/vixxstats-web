@@ -4,6 +4,8 @@ web app to view VIXX video statistics
 - [React Frontend](#react-frontend)
     - [index.js](#indexjs)
     - [App](#app)
+    - [I18nProvider](#i18nprovider)
+    - [LanguageSelect](#languageselect)
     - [ThemeContextProvider](#themecontextprovider)
     - [common components](#common-components)
          - [Page](#page)
@@ -28,10 +30,17 @@ Each component used in the React App is described below
 The main entry point for the app. Renders the [`<App>`](#app) component along with the following wrappers:
 - `ApolloProvider`:  allows for sending GraphQL queries to the server
 - `BreakPointProvider`: provides the ability to use the `<BreakPoint>` component from [react-socks](https://github.com/flexdinesh/react-socks), which lets you specify that elements only be rendered at certain viewport size breakpoints for easy desktop/mobile accomodation
+- `I18nProvider`: provides a context that allows for internatoinalization
 - `MyThemeProvider`: a custom component, provides the app with a theme context so child components can all access information about the current theme using props
 
 #### `App`
 The app :^) wrapped in a `<BrowserRouter>` component, this is which specifies which component to render based on the URL
+
+#### `I18nProvider`
+Found in `I18nProvider.js`, this is a wrapper component that manages the global internatoinalization state. This file also exports `I18nContext`. If this context is used inside any component that is a child of the provider, it will be able to access the state managed by this context, which in this case is the locale information.
+
+#### `LanguageSelect`
+This component is the button located in the toolbar next to the theme switcher. It displays a flag icon that represents the current language and when clicked shows a dropdown that allows for changing the language. It uses the `I18nContext` in order to change the language across the app.
 
 #### `ThemeContextProvider`
 Found in `ThemeContext.js`, this is the custom component that wraps the app in order to provide a React context that keeps track the theme currently in use in order to render the pages with the proper theme
@@ -143,4 +152,20 @@ const { data, loading, error } = useQuery(QUERY_NAME, {variables: { query_param:
   if (error) return `Error! ${error.message}`;
 
   let dataRaw = data['typeDefQueryName'];
+```
+
+#### Internationalization fields
+```json
+// CustomNavbar
+"home_link"
+"light_theme"
+"dark_theme"
+"scentist_theme"
+"members_dropdown"
+"members_dropdown_n"
+"members_dropdown_leo"
+"members_dropdown_ken"
+"members_dropdown_ravi"
+"members_dropdown_hongbin"
+"members_dropdown_hyuk"
 ```
