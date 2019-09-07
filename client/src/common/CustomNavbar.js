@@ -14,7 +14,7 @@ import LanguageSelect from './LanguageSelect'
 
 function CustomNavbar (props) {
 
-  // get translation context
+  // get the translate function from the internationalization context
   const { translate } = useContext(I18nContext);
 
   // get toggle context with useTheme
@@ -180,6 +180,7 @@ function CustomNavbar (props) {
       <StyledNavbar expand="lg">
         <Navbar.Brand className="hvr-grow" href="/">vixxstats</Navbar.Brand>
 
+        {/* display the flag outside the collapsed component when small so it's always visible */}
         <StyledBreakpoint large down>
           <LanguageSelect /> 
         </StyledBreakpoint>
