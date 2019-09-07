@@ -12,6 +12,17 @@ function LanguageSelect (props) {
     // StyledDropdown: changes the color and hover behavior of dropdowns in the navbar
     // #region
     const StyledDropdown = styled.div`
+
+        button {
+            border: none;
+            background: none;
+
+            &:focus {
+                outline: none;
+            }            
+            
+        }
+
         .dropdown-menu {
             background-color: ${backgroundColor};
         }
@@ -81,9 +92,9 @@ function LanguageSelect (props) {
     <div>
         {/* <Breakpoint large up> */}
             <StyledDropdown className="dropdown">
-                <a aria-haspopup="true" aria-expanded="false" id="dropdown-language" data-toggle="dropdown" role="button">
+                <button aria-haspopup="true" aria-expanded="false" id="dropdown-language" data-toggle="dropdown">
                     <StyledDiv style={langButtonStyle} />
-                </a>
+                </button>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
                     <div id="en_wrapper" className="dropdown-item" onClick={onLanguageSelect}>
                         {translate('i18n_dropdown_en')} <StyledMenuDiv id="en_flag_icon" style={{'backgroundImage': `url(${en_icon})`}}></StyledMenuDiv>  
